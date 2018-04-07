@@ -1,5 +1,27 @@
-%Table should not contain the class labels
 function DiscreteT = descretize_quantile(Table)
+%=============================================================================================================================
+%    This function is advanced version of 'descritize' and it uses
+%    percentile deviation instead of mean and standard deviation.
+%    This function incurs less information loss while descretizing as compared to descretize function. 
+%    This function is used only when the attributes are not discrete but- 
+%    any real numbers to make the entries as integers as traditional Rough Set delas with discrete values only.
+%    Use either this function or 'descretize' function to descretize the data
+%    Input: 
+%        A table, whose columns represents the condition attribues and rows represents the objects or examples
+%        Caution: 
+%            i) Input table should not contain the Decision attribute in any of its column
+%           ii) Input should contain only real numbers in its entries. (No string or no complex number)
+%          iii) Ecah cell of the table should have a scalar value.
+%    Functionality:
+%        For each column, each values are represented by their 5th percentile range denoting it by integers from 1 to 22
+%    Output: 
+%        A table with same dimension as of the Input table. 
+%        Output Table has all the entries from the set of integers from 1 to 22
+%    Author: Tathagata Bandyopadhyay (tathagatabanerjee15@rocketmail.com)
+%    Documentation: Tathagta
+%    Last Modified: 07-04-2018(dd-mm-yyyy) by Tathagata
+%=============================================================================================================================    
+
 [row, col]=size(Table);
 DiscreteT=zeros(row,col);
 P0=prctile(Table,0,1);
